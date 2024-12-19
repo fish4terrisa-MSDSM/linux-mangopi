@@ -578,6 +578,10 @@ KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_RUSTFLAGS_KERNEL :=
 KBUILD_AFLAGS_MODULE  := -DMODULE
+# Avoid generating .eh_frame sections.
+# Linux 6.1 seems not supporting newer gcc
+# See at https://github.com/cwt-vf2/linux-cwt-starfive-vf2/compare/cwt20-5.10.3-2...cwt21-5.11.3-1#diff-e94610dcda05425ff9125e4629e943602d9e251f4782d2889c64f5f11aeba4b4 
+KBUILD_CFLAGS += -fno-asynchronous-unwind-tables -fno-unwind-tables
 KBUILD_CFLAGS_MODULE  := -DMODULE
 KBUILD_RUSTFLAGS_MODULE := --cfg MODULE
 KBUILD_LDFLAGS_MODULE :=
